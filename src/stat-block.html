@@ -98,10 +98,10 @@
         var template = thisDoc.getElementById(elemName);
         // If the attr() CSS3 function were properly implemented, we wouldn't
         // need this hack...
-        if (this.hasAttribute('data-content-height')) {
+        /*if (this.hasAttribute('data-content-height')) {
           var wrap = template.content.getElementById('content-wrap');
           wrap.style.height = this.getAttribute('data-content-height') + 'px';
-        }
+        }*/
         var clone = thatDoc.importNode(template.content, true);
         this.createShadowRoot().appendChild(clone);
       }
