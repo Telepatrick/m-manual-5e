@@ -43,7 +43,7 @@
 
             $.getJSON('hunklessons.json', function (data) {//get the json file
             }).done(function (data) {
-                var output = "<div class='panel panel-default'>";
+                var output = "";
                 $.each(data.compendium.monster, function (key, val) {
                     if (val.name.search(myExp) != -1) {//search for the data in the json file
                         output += "<stat-block>";
@@ -101,7 +101,6 @@
                         output += "</stat-block>";
                     }
                 });//end each
-                output += "</div>";
                 $('#monsters').html(output);//output result to the update div
             });
         }
