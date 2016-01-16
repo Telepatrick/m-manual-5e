@@ -96,6 +96,13 @@
                                 output += '</property-block>';
                             });
                         }
+                        if (val.legendary) {
+                            output += '<h3>Legendary</h3>';
+                            $.each(val.legendary, function (i, l) {
+                                output += '<property-block><h4>' + l.name + ' </h4><p>' + l.text + '</p>';
+                                output += '</property-block>';
+                            });
+                        }
                         output += "</div>";
                         output += '</div>';
                         output += "</stat-block>";
