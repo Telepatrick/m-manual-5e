@@ -80,7 +80,10 @@
                             });
                         }else if(typeof val.trait === 'object') {
                             $.each(val.trait, function (i, t) {
-                                output += '<property-block><p>' + t + '</p>';
+                                if(i === 'name')
+                                    output += '<property-block><h4>' + t + '</h4>';
+                                else
+                                    output += '<property-block><p>' + t + '</p>';
                                 output += '</property-block>';
                             });
                         }
@@ -92,8 +95,10 @@
                             });
                         }else if(typeof val.action === 'object') {
                             $.each(val.action, function (i, t) {
-                                output += '<property-block><p>' + t + '</p>';
-                                output += '</property-block>';
+                                if(i === 'name')
+                                    output += '<property-block><h4>' + t + '</h4>';
+                                else
+                                    output += '<property-block><p>' + t + '</p>';
                             });
                         }
                         if (val.legendary) {
