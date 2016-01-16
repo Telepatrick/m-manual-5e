@@ -63,6 +63,7 @@ $('#search').keypress(function(event) {//when key is pressed in search bar
                     output += '<abilities-block data-str="' + val.str + '" data-dex="' + val.dex + '" data-con="' + val.con + '" data-int="' + val.int + '" data-wis="' + val.wis + '" data-cha="' + val.cha + '"></abilities-block>';
                     if (val.skill)
                     output += '<property-line><h4>Skills </h4><p>' + val.skill + '</p></property-line>';
+                    output += '<property-line><h4>Passive Perception </h4><p>' + val.passive + '</p></property-line>';
                     if (val.immune)
                     output += '<property-line><h4>Damage Immunities </h4><p>' + val.immune + '</p></property-line>';
                     if (val.conditionImmune)
