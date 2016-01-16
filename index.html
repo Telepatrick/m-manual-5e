@@ -35,89 +35,88 @@
 	</div>
 <div class="panel-group" id="monsters">
 </div>
-	<script type="text/javascript">
-	$('#search').keypress(function(event) {//when key is pressed in search bar
-        if (event.keyCode == 13) {
-            var searchTerm = $(this).val(); //val of search bar
-            var myExp = new RegExp(searchTerm, "i"); //regular experation
+<script type="text/javascript">
+$('#search').keypress(function(event) {//when key is pressed in search bar
+    if (event.keyCode == 13) {
+        var searchTerm = $(this).val(); //val of search bar
+        var myExp = new RegExp(searchTerm, "i"); //regular experation
 
-            $.getJSON('hunklessons.json', function (data) {//get the json file
-            }).done(function (data) {
-                var output = "";
-                $.each(data.compendium.monster, function (key, val) {
-                    if (val.name.search(myExp) != -1) {//search for the data in the json file
-                        output += "<stat-block>";
-                        output += "<div class='panel-heading'>";
-                        output += "<creature-heading>";
-                        output += "<h1 class='panel-title'>";
-                        output += '<a data-toggle="collapse" data-parent="#monsters" href="#collapse' + key + '">' + val.name + '</a>';
-                        output += '</h1><h2>' + val.type + ', CR ' + val.cr + '</h2>';
-                        output += "</creature-heading>";
-                        output += '</div>';
-                        output += '<div id="collapse' + key + '" class ="panel-collapse collapse">';
-                        output += '<div class="panel-body">';
-                        output += '<top-stats>';
-                        output += '<property-line>';
-                        output += '<h4>Armor Class </h4><p>' + val.ac + '</p>';
-                        output += '</property-line>';
-                        output += '<property-line>';
-                        output += '<h4>Hit Points </h4><p>' + val.hp + '</p>';
-                        output += '</property-line>';
-                        output += '<property-line>';
-                        output += '<h4>Speed </h4><p>' + val.speed + '</p>';
-                        output += '</property-line>';
-                        output += '<abilities-block data-str="' + val.str + '" data-dex="' + val.dex + '" data-con="' + val.con + '" data-int="' + val.int + '" data-wis="' + val.wis + '" data-cha="' + val.cha + '"></abilities-block>';
-                        output += '<property-line><h4>Damage Immunities </h4><p>' + val.immune + '</p></property-line>';
-                        output += '<property-line><h4>Condition Immunities </h4><p>' + val.conditionImmune + '</p></property-line>';
-                        output += '<property-line><h4>Senses </h4><p>' + val.senses + '</p></property-line>';
-                        output += '<property-line><h4>Languages </h4><p>' + val.languages + '</p></property-line>';
-                        output += '<property-line><h4>Challenge </h4><p>' + val.cr + '</p></property-line>';
-                        output += '</top-stats>';
-                        if (Array.isArray(val.trait)) {
-                            $.each(val.trait, function (i, t) {
-                                output += '<property-block><h4>' + t.name + ' </h4><p>' + t.text + '</p>';
-                                output += '</property-block>';
-                            });
-                        }else if(typeof val.trait === 'object') {
-                            $.each(val.trait, function (i, t) {
-                                if(i === 'name')
-                                    output += '<property-block><h4>' + t + '</h4>';
-                                else
-                                    output += '<property-block><p>' + t + '</p>';
-                                output += '</property-block>';
-                            });
-                        }
-                        if (Array.isArray(val.action)) {
-                            output += '<h3>Actions</h3>';
-                            $.each(val.action, function (i, t) {
-                                output += '<property-block><h4>' + t.name + ' </h4><p>' + t.text + '</p>';
-                                output += '</property-block>';
-                            });
-                        }else if(typeof val.action === 'object') {
-                            $.each(val.action, function (i, t) {
-                                if(i === 'name')
-                                    output += '<property-block><h4>' + t + '</h4>';
-                                else
-                                    output += '<property-block><p>' + t + '</p>';
-                            });
-                        }
-                        if (val.legendary) {
-                            output += '<h3>Legendary</h3>';
-                            $.each(val.legendary, function (i, l) {
-                                output += '<property-block><h4>' + l.name + ' </h4><p>' + l.text + '</p>';
-                                output += '</property-block>';
-                            });
-                        }
-                        output += "</div>";
-                        output += '</div>';
-                        output += "</stat-block>";
+        $.getJSON('hunklessons.json', function (data) {//get the json file
+        }).done(function (data) {
+            var output = "";
+            $.each(data.compendium.monster, function (key, val) {
+                if (val.name.search(myExp) != -1) {//search for the data in the json file
+                    output += "<stat-block>";
+                    output += "<div class='panel-heading'>";
+                    output += "<creature-heading>";
+                    output += "<h1 class='panel-title'>";
+                    output += '<a data-toggle="collapse" data-parent="#monsters" href="#collapse' + key + '">' + val.name + '</a>';
+                    output += '</h1><h2>' + val.type + ', CR ' + val.cr + '</h2>';
+                    output += "</creature-heading>";
+                    output += '</div>';
+                    output += '<div id="collapse' + key + '" class ="panel-collapse collapse">';
+                    output += '<div class="panel-body">';
+                    output += '<top-stats>';
+                    output += '<property-line><h4>Armor Class </h4><p>' + val.ac + '</p></property-line>';
+                    output += '<property-line><h4>Hit Points </h4><p>' + val.hp + '</p></property-line>';
+                    output += '<property-line><h4>Speed </h4><p>' + val.speed + '</p></property-line>';
+                    output += '<abilities-block data-str="' + val.str + '" data-dex="' + val.dex + '" data-con="' + val.con + '" data-int="' + val.int + '" data-wis="' + val.wis + '" data-cha="' + val.cha + '"></abilities-block>';
+                    if (val.skill)
+                    output += '<property-line><h4>Skills </h4><p>' + val.skill + '</p></property-line>';
+                    if (val.immune)
+                    output += '<property-line><h4>Damage Immunities </h4><p>' + val.immune + '</p></property-line>';
+                    if (val.conditionImmune)
+                    output += '<property-line><h4>Condition Immunities </h4><p>' + val.conditionImmune + '</p></property-line>';
+                    if (val.senses)
+                    output += '<property-line><h4>Senses </h4><p>' + val.senses + '</p></property-line>';
+                    output += '<property-line><h4>Languages </h4><p>' + val.languages + '</p></property-line>';
+                    output += '<property-line><h4>Challenge </h4><p>' + val.cr + '</p></property-line>';
+                    output += '</top-stats>';
+                    if (Array.isArray(val.trait)) {
+                        $.each(val.trait, function (i, t) {
+                            output += '<property-block><h4>' + t.name + ' </h4><p>' + t.text + '</p>';
+                            output += '</property-block>';
+                        });
+                    }else if(typeof val.trait === 'object') {
+                        $.each(val.trait, function (i, t) {
+                            if(i === 'name')
+                                output += '<property-block><h4>' + t + '</h4>';
+                            else
+                                output += '<property-block><p>' + t + '</p>';
+                            output += '</property-block>';
+                        });
                     }
-                });//end each
-                $('#monsters').html(output);//output result to the update div
-            });
-        }
-    });
-	</script>
+                    if (Array.isArray(val.action)) {
+                        output += '<h3>Actions</h3>';
+                        $.each(val.action, function (i, t) {
+                            output += '<property-block><h4>' + t.name + ' </h4><p>' + t.text + '</p>';
+                            output += '</property-block>';
+                        });
+                    }else if(typeof val.action === 'object') {
+                        $.each(val.action, function (i, t) {
+                            if(i === 'name')
+                                output += '<property-block><h4>' + t + '</h4>';
+                            else
+                                output += '<property-block><p>' + t + '</p>';
+                        });
+                    }
+                    if (val.legendary) {
+                        output += '<h3>Legendary</h3>';
+                        $.each(val.legendary, function (i, l) {
+                            output += '<property-block><h4>' + l.name + ' </h4><p>' + l.text + '</p>';
+                            output += '</property-block>';
+                        });
+                    }
+                    output += "</div>";
+                    output += '</div>';
+                    output += "</stat-block>";
+                }
+            });//end each
+            $('#monsters').html(output);//output result to the update div
+        });
+    }
+});
+</script>
 </div>
 </body>
 </html>
