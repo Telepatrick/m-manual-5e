@@ -73,16 +73,26 @@
                         output += '<property-line><h4>Languages </h4><p>' + val.languages + '</p></property-line>';
                         output += '<property-line><h4>Challenge </h4><p>' + val.cr + '</p></property-line>';
                         output += '</top-stats>';
-                        if (val.trait) {
+                        if (Array.isArray(val.trait)) {
                             $.each(val.trait, function (i, t) {
                                 output += '<property-block><h4>' + t.name + ' </h4><p>' + t.text + '</p>';
                                 output += '</property-block>';
                             });
+                        }else if(typeof val.trait === 'object') {
+                            $.each(val.trait, function (i, t) {
+                                output += '<property-block><p>' + t + '</p>';
+                                output += '</property-block>';
+                            });
                         }
-                        if (val.action) {
+                        if (Array.isArray(val.action)) {
                             output += '<h3>Actions</h3>';
                             $.each(val.action, function (i, t) {
                                 output += '<property-block><h4>' + t.name + ' </h4><p>' + t.text + '</p>';
+                                output += '</property-block>';
+                            });
+                        }else if(typeof val.action === 'object') {
+                            $.each(val.action, function (i, t) {
+                                output += '<property-block><p>' + t + '</p>';
                                 output += '</property-block>';
                             });
                         }
