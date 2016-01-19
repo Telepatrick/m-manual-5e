@@ -6,12 +6,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<link rel="import" href="src/top-stats.html">
-    <link rel="import" href="src/creature-heading.html">
-    <link rel="import" href="src/abilities-block.html">
-    <link rel="import" href="src/property-block.html">
-    <link rel="import" href="src/property-line.html">
-    <link rel="import" href="src/stat-block.html">
+<link rel="import" href="statblock5e/src/top-stats.html">
+    <link rel="import" href="statblock5e/src/creature-heading.html">
+    <link rel="import" href="statblock5e/src/abilities-block.html">
+    <link rel="import" href="statblock5e/src/property-block.html">
+    <link rel="import" href="statblock5e/src/property-line.html">
+    <link rel="import" href="statblock5e/src/stat-block.html">
     <style>
       body {
         margin: 0;
@@ -41,7 +41,7 @@ $('#search').keypress(function(event) {//when key is pressed in search bar
         var searchTerm = $(this).val(); //val of search bar
         var myExp = new RegExp(searchTerm, "i"); //regular experation
 
-        $.getJSON('hunklessons.json', function (data) {//get the json file
+        $.getJSON('data/compendium.json', function (data) {//get the json file
         }).done(function (data) {
             var output = "";
             $.each(data.compendium.monster, function (key, mnstr) {
